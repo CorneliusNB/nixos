@@ -1,0 +1,83 @@
+/* Catppuccin Latte Palette Definition */
+@define-color base   #eff1f5;
+@define-color mantle #e6e9ef;
+@define-color text   #4c4f69;
+@define-color overlay0 #9ca0b0;
+@define-color red    #d20f39;
+@define-color peach  #fe640b;
+
+/* Global Reset */
+* {
+    font-family: "Noto Sans", "FontAwesome", sans-serif;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+/* Main Bar Styling - Essential for Light Theme */
+window#waybar {
+    background-color: @base;
+    color: @text;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+box:not(.modules-left):not(.modules-right):not(.modules-center):not(#workspaces){
+    border-style: solid;
+    /* Added border color to make the style visible */
+    border-color: @overlay0;
+    border-width: 1px; 
+}
+
+.modules-right {
+    margin-right: 10px
+}
+
+.module {
+    padding: 5px
+}
+
+#workspaces button{
+    color: transparent;
+    padding-left: 10px;
+    transition: color 0.3s ease;
+}
+
+#workspaces button.active {
+    color: @text; /* Catppuccin Text (was black) */
+}
+
+
+#workspaces button:hover,
+#pulseaudio:hover,
+#network:hover,
+#workspaces button.occupied:not(.focused),
+#bluetooth.off,
+#bluetooth:hover {
+    color: @overlay0; /* Catppuccin Overlay0 (was grey) */
+}
+
+#battery.warning:not(.charging) {
+    color: @peach; /* Catppuccin Peach (was orange) */
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-timing-function: steps(25);
+    animation-iteration-count: 10;
+    animation-direction: alternate;
+}
+
+#battery.critical:not(.charging) {
+    color: @red; /* Catppuccin Red (was red) */
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(25);
+    animation-iteration-count: 50;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+  to {
+    color: transparent;
+  }
+}
