@@ -1,7 +1,7 @@
 { pkgs, ... }: {
-  users.users.timsurreal = {
+  users.users.yoki = {
     isNormalUser = true;
-    description = "timsurreal";
+    description = "yoki";
     extraGroups = [ "networkmanager" "wheel" "tty" "dialout"];
   };
 }

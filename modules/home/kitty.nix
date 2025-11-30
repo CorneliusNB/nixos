@@ -5,6 +5,6 @@ programs.kitty = {
     settings = {
     confirm_os_window_close = 0;
     };
-    themeFile = "Catppuccin-Latte";
+    themeFile = "Dracula";
   };
 }

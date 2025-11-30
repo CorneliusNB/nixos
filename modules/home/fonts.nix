@@ -1,17 +1,18 @@
 { pkgs, ... }: {
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    fira-code
-    corefonts
-    fira-code-symbols
     font-awesome
-    # Replace the old nerdfonts with specific nerd-fonts packages
+    nerd-fonts.symbols-only
     nerd-fonts.fira-code
-    nerd-fonts.jetbrains-mono
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.noto
     nerd-fonts.hack
-    # Add other specific nerd fonts you need, or use the line below for all fonts
-    # ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+    nerd-fonts.ubuntu
     noto-fonts
+    noto-fonts-cjk-sans
     noto-fonts-color-emoji
+    fira-code
+    fira-code-symbols
+    corefonts
   ];
 }

@@ -1,6 +1,6 @@
 { inputs, config, pkgs, ... }: {
-  home.username = "timsurreal";
-  home.homeDirectory = "/home/timsurreal";
+  home.username = "yoki";
+  home.homeDirectory = "/home/yoki";
   home.stateVersion = "25.05";
 
   programs.home-manager.enable = true;
@@ -10,7 +10,6 @@
 
 
   imports = [
-    inputs.mango.hmModules.mango
     inputs.flatpaks.homeManagerModules.nix-flatpak
     ./modules/home/fonts.nix
     ./modules/home/waybar.nix

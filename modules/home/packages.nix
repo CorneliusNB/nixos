@@ -24,7 +24,9 @@
     swww
     waypaper
     zoom-us
+    dracula-theme
     webcamoid
+    networkmanagerapplet
   ];
 }
 

@@ -2,8 +2,8 @@
 
   programs.waybar = {
     enable = true;
-    # Assumes style.css is in the same directory as this .nix file
-    style = builtins.readFile ./style.css; 
+    # Ensures style.css is read from the current directory
+    style = builtins.readFile ./style.css;
     
     settings = [{
       layer = "bottom";
@@ -26,7 +26,7 @@
           mode-mon-col = 3;
           on-scroll = 1;
           format = {
-            today = "<u>{}</u>";
+            today = "<span color='#ff79c6'><b><u>{}</u></b></span>"; # Dracula Pink for today
           };
         };
       };
@@ -44,12 +44,12 @@
         tooltip = false;
         on-click = "foot pulsemixer";
         format = "{icon}";
-        format-muted = "";
+        format-muted = "󰝟";
         format-icons = {
           default = [
-            ""
-            ""
-            ""
+            "󰕿"
+            "󰖀"
+            "󰕾"
           ];
         };
       };
@@ -65,7 +65,6 @@
           };
           sort-by-number = true;
         };
-
 
       network = {
         tooltip = false;
@@ -88,9 +87,9 @@
           warning = 15;
           critical = 5;
         };
-        format = "{icon} {capacity}%";
-        format-charging = "󰂄 {capacity}%";
-        format-plugged = "󰂄 {capacity}%";
+        format = "{capacity}%";
+        format-charging = "󱐋 {capacity}%";
+        format-plugged = "󱐋 {capacity}%";
         format-icons = [
           "󰂎"
           "󰁺"

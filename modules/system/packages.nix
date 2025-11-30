@@ -16,7 +16,8 @@
       xdg-utils
       gsettings-desktop-schemas
       proton-ge-custom
-      xwayland-satellite	
+      xwayland-satellite
+      nodejs	
     ];
 
 #  programs.kdeconnect = {

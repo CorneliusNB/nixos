@@ -2,10 +2,6 @@
   description = "NixOS configuration with Home Manager";
 
   inputs = {
-     mango = {
-      url = "github:DreamMaoMao/mango";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };  
       chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
       nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
       flatpaks.url = "github:gmodena/nix-flatpak/?ref=latest";
@@ -15,13 +11,12 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, chaotic, flatpaks, mango, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, chaotic, flatpaks, ... }: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
-          inputs.mango.nixosModules.mango
           chaotic.nixosModules.default # IMPORTANT
           home-manager.nixosModules.home-manager
           {

@@ -4,7 +4,7 @@ programs.helix = {
   package = pkgs.evil-helix;
   enable = true;
   settings = {
-    theme = "catppuccin_latte";
+    theme = "dracula";
   };
   };
 }

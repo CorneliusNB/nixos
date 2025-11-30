@@ -1,10 +1,15 @@
-/* Catppuccin Latte Palette Definition */
-@define-color base   #eff1f5;
-@define-color mantle #e6e9ef;
-@define-color text   #4c4f69;
-@define-color overlay0 #9ca0b0;
-@define-color red    #d20f39;
-@define-color peach  #fe640b;
+/* Dracula Palette Definition */
+@define-color background #282a36;
+@define-color current    #44475a;
+@define-color foreground #f8f8f2;
+@define-color comment    #6272a4;
+@define-color cyan       #8be9fd;
+@define-color green      #50fa7b;
+@define-color orange     #ffb86c;
+@define-color pink       #ff79c6;
+@define-color purple     #bd93f9;
+@define-color red        #ff5555;
+@define-color yellow     #f1fa8c;
 
 /* Global Reset */
 * {
@@ -15,51 +20,92 @@
     min-height: 0;
 }
 
-/* Main Bar Styling - Essential for Light Theme */
+/* Main Bar Styling */
 window#waybar {
-    background-color: @base;
-    color: @text;
+    background-color: @background;
+    color: @foreground;
     transition-property: background-color;
     transition-duration: .5s;
+    opacity: 0.95; /* Slight transparency for Dracula vibe */
 }
 
+/* Module Container Styling */
 box:not(.modules-left):not(.modules-right):not(.modules-center):not(#workspaces){
     border-style: solid;
-    /* Added border color to make the style visible */
-    border-color: @overlay0;
-    border-width: 1px; 
+    border-color: @current;
+    border-width: 0px; 
+    margin: 5px;
 }
 
 .modules-right {
-    margin-right: 10px
+    margin-right: 10px;
 }
 
 .module {
-    padding: 5px
+    padding: 0 10px;
 }
 
-#workspaces button{
-    color: transparent;
-    padding-left: 10px;
+/* --- Workspaces (Niri) --- */
+#workspaces button {
+    color: @comment;
+    padding-left: 5px;
+    padding-right: 5px;
     transition: color 0.3s ease;
 }
 
+/* Active workspace gets Dracula Pink */
 #workspaces button.active {
-    color: @text; /* Catppuccin Text (was black) */
+    color: @pink; 
 }
 
+#workspaces button:hover {
+    color: @foreground;
+    background: @current;
+    border-radius: 4px;
+}
 
-#workspaces button:hover,
-#pulseaudio:hover,
-#network:hover,
-#workspaces button.occupied:not(.focused),
-#bluetooth.off,
-#bluetooth:hover {
-    color: @overlay0; /* Catppuccin Overlay0 (was grey) */
+#workspaces button.occupied:not(.focused) {
+    color: @purple;
+}
+
+/* --- Colorful Module Text Assignments --- */
+
+/* Clock: Purple */
+#clock {
+    color: @purple;
+}
+
+/* Bluetooth: Blue (Comment color fits well here) or Cyan */
+#bluetooth {
+    color: @comment;
+}
+#bluetooth.connected {
+    color: @cyan;
+}
+
+/* Audio: Green */
+#pulseaudio {
+    color: @green;
+}
+#pulseaudio.muted {
+    color: @red;
+}
+
+/* Network: Cyan */
+#network {
+    color: @cyan;
+}
+#network.disconnected {
+    color: @red;
+}
+
+/* Battery: Yellow -> Orange -> Red */
+#battery {
+    color: @yellow;
 }
 
 #battery.warning:not(.charging) {
-    color: @peach; /* Catppuccin Peach (was orange) */
+    color: @orange;
     animation-name: blink;
     animation-duration: 1s;
     animation-timing-function: steps(25);
@@ -68,7 +114,7 @@ box:not(.modules-left):not(.modules-right):not(.modules-center):not(#workspaces)
 }
 
 #battery.critical:not(.charging) {
-    color: @red; /* Catppuccin Red (was red) */
+    color: @red;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: steps(25);
@@ -76,8 +122,18 @@ box:not(.modules-left):not(.modules-right):not(.modules-center):not(#workspaces)
     animation-direction: alternate;
 }
 
+/* Tooltip Styling */
+tooltip {
+    background: @background;
+    border: 1px solid @pink;
+}
+
+tooltip label {
+    color: @foreground;
+}
+
 @keyframes blink {
   to {
-    color: transparent;
+    color: @current;
   }
 }
