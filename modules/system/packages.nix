@@ -17,7 +17,10 @@
       gsettings-desktop-schemas
       proton-ge-custom
       xwayland-satellite
-      nodejs	
+      nodejs
+      python3
+      python3Packages.selenium
+      chromedriver
     ];
 
 #  programs.kdeconnect = {

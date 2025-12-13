@@ -1,13 +1,15 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
+    ripgrep
     obsidian
     spotify
     obs-studio
-    gnome-tweaks
     papirus-icon-theme
     zoxide
     s-tui
     stress
+    lm_sensors
+    conky
     powertop
     vesktop
     onlyoffice-desktopeditors
@@ -24,9 +26,11 @@
     swww
     waypaper
     zoom-us
-    dracula-theme
-    webcamoid
+    yazi
     networkmanagerapplet
+    discordo
+    vscode-fhs
+    lazygit
   ];
 }
 

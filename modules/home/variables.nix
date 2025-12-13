@@ -1,7 +1,7 @@
 { ... }: {
   home.sessionVariables = {
-    EDITOR = "helix";
-    VISUAL = "helix";
+    EDITOR = "hx";
+    VISUAL = "hx";
     GDK_BACKEND = "wayland";
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     XDG_SESSION_TYPE = "wayland";

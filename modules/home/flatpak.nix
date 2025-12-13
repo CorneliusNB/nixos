@@ -6,7 +6,7 @@
 
   services.flatpak.packages = [
     "org.vinegarhq.Sober"
-   " org.jdownloader.JDownloader"
+   "com.stremio.Stremio"
   ];
 
 }

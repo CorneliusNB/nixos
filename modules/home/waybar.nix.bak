@@ -5,32 +5,28 @@
     style = builtins.readFile ./style.css;
     
     settings = [{
-      layer = "top";
-      spacing = 0;
+      layer = "bottom";
+      spacing = 10;
 
-      modules-left = [ "niri/workspaces" "niri/window" ];
-      modules-center = [ ]; 
+      modules-left = [ "niri/workspaces" ];
+      modules-center = [ "clock" ];
       modules-right = [
         "bluetooth"
         "pulseaudio"
         "network"
         "battery"
-        "clock"
       ];
 
       clock = {
         tooltip = true;
-        tooltip-format = "<tt><small>{calendar}</small></tt>"; 
-        format = "󰃰  {:%H:%M}"; 
+        tooltip-format = "{calendar}";
         calendar = {
-          mode = "month";
+          mode = "year";
           mode-mon-col = 3;
           on-scroll = 1;
           format = {
-            months = "<span color='#abb2bf'><b>{}</b></span>";
-            days = "<span color='#5c6370'>{}</span>";
-            weekdays = "<span color='#61afef'><b>{}</b></span>";
-            today = "<span color='#e06c75'><b><u>{}</u></b></span>";
+            # One Dark Red (#e06c75) for the "Today" highlight
+            today = "<span color='#e06c75'><b><u>{}</u></b></span>"; 
           };
         };
       };
@@ -38,19 +34,23 @@
       bluetooth = {
         tooltip = false;
         on-click = "blueman-manager";
-        format = " {status}";
-        format-off = ""; 
+        format = "";
+        format-off = "󰂲";
         format-on = "";
-        format-connected = " {device_alias}";
+        format-connected = "󰂱";
       };
 
       pulseaudio = {
         tooltip = false;
         on-click = "foot pulsemixer";
-        format = "{icon}  {volume}%";
-        format-muted = "󰝟 Muted";
+        format = "{icon}";
+        format-muted = "󰝟";
         format-icons = {
-          default = [ "󰕿" "󰖀" "󰕾" ];
+          default = [
+            "󰕿"
+            "󰖀"
+            "󰕾"
+          ];
         };
       };
 
@@ -60,24 +60,25 @@
           on-click = "activate";
           format = "{icon}";
           format-icons = {
-            active = " 󰮯 ";
-            default = " 󰊠 ";
+            active = "†";
+            default = "·";
           };
           sort-by-number = true;
         };
 
-      "niri/window" = {
-        format = "[{}]";
-        separate-outputs = true;
-        # max-length removed for dynamic sizing
-      };
-
       network = {
         tooltip = false;
         on-click = "kitty nmtui";
-        format-wifi = "   {essid}";
-        format-ethernet = "  Eth";
+        format-wifi = " {icon}";
+        format-ethernet = " ";
         format-disconnected = "󰌙";
+        format-icons = [
+          "󰤯"
+          "󰤟"
+          "󰤢"
+          "󰤢"
+          "󰤨"
+        ];
       };
 
       battery = {
@@ -86,10 +87,22 @@
           warning = 15;
           critical = 5;
         };
-        format = "{icon} {capacity}%";
+        format = "{capacity}%";
         format-charging = "󱐋 {capacity}%";
         format-plugged = "󱐋 {capacity}%";
-        format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+        format-icons = [
+          "󰂎"
+          "󰁺"
+          "󰁻"
+          "󰁼"
+          "󰁽"
+          "󰁾"
+          "󰁿"
+          "󰂀"
+          "󰂁"
+          "󰂂"
+          "󰁹"
+        ];
       };
     }];
   };

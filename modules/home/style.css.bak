@@ -1,0 +1,140 @@
+/* One Dark Palette Definition */
+@define-color background #282c34;
+@define-color foreground #abb2bf;
+@define-color comment    #5c6370;
+@define-color selection  #3e4452;
+
+@define-color red        #e06c75;
+@define-color green      #98c379;
+@define-color yellow     #e5c07b;
+@define-color blue       #61afef;
+@define-color purple     #c678dd;
+@define-color cyan       #56b6c2;
+@define-color orange     #d19a66;
+
+/* Global Reset */
+* {
+    font-family: "Noto Sans", "FontAwesome", sans-serif;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+/* Main Bar Styling */
+window#waybar {
+    background-color: @background;
+    color: @foreground;
+    transition-property: background-color;
+    transition-duration: .5s;
+    opacity: 0.95; 
+}
+
+/* Module Container Styling */
+box:not(.modules-left):not(.modules-right):not(.modules-center):not(#workspaces){
+    border-style: solid;
+    border-color: @selection;
+    border-width: 0px; 
+    margin: 5px;
+}
+
+.modules-right {
+    margin-right: 10px;
+}
+
+.module {
+    padding: 0 10px;
+}
+
+/* --- Workspaces (Niri) --- */
+#workspaces button {
+    color: @comment;
+    padding-left: 5px;
+    padding-right: 5px;
+    transition: color 0.3s ease;
+}
+
+/* Active workspace gets One Dark Blue */
+#workspaces button.active {
+    color: @blue; 
+}
+
+#workspaces button:hover {
+    color: @foreground;
+    background: @selection;
+    border-radius: 4px;
+}
+
+#workspaces button.occupied:not(.focused) {
+    color: @purple;
+}
+
+/* --- Colorful Module Text Assignments --- */
+
+/* Clock: Purple */
+#clock {
+    color: @purple;
+}
+
+/* Bluetooth: Comment (inactive) -> Blue (connected) */
+#bluetooth {
+    color: @comment;
+}
+#bluetooth.connected {
+    color: @blue;
+}
+
+/* Audio: Green */
+#pulseaudio {
+    color: @green;
+}
+#pulseaudio.muted {
+    color: @red;
+}
+
+/* Network: Cyan */
+#network {
+    color: @cyan;
+}
+#network.disconnected {
+    color: @red;
+}
+
+/* Battery: Yellow -> Orange -> Red */
+#battery {
+    color: @yellow;
+}
+
+#battery.warning:not(.charging) {
+    color: @orange;
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-timing-function: steps(25);
+    animation-iteration-count: 10;
+    animation-direction: alternate;
+}
+
+#battery.critical:not(.charging) {
+    color: @red;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(25);
+    animation-iteration-count: 50;
+    animation-direction: alternate;
+}
+
+/* Tooltip Styling */
+tooltip {
+    background: @background;
+    border: 1px solid @blue;
+}
+
+tooltip label {
+    color: @foreground;
+}
+
+@keyframes blink {
+  to {
+    color: @selection;
+  }
+}

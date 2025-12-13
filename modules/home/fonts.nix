@@ -14,5 +14,8 @@
     fira-code
     fira-code-symbols
     corefonts
+    maple-mono.truetype
+    maple-mono.NF-unhinted
+    maple-mono.NF-CN-unhinted
   ];
 }

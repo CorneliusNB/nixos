@@ -1,139 +1,160 @@
-/* Dracula Palette Definition */
-@define-color background #282a36;
-@define-color current    #44475a;
-@define-color foreground #f8f8f2;
-@define-color comment    #6272a4;
-@define-color cyan       #8be9fd;
-@define-color green      #50fa7b;
-@define-color orange     #ffb86c;
-@define-color pink       #ff79c6;
-@define-color purple     #bd93f9;
-@define-color red        #ff5555;
-@define-color yellow     #f1fa8c;
+/* One Dark Palette Definition */
+@define-color bg-dark  #282c34;
+@define-color bg-light #3e4452; /* This is the "inactive workspace" color */
+@define-color fg       #abb2bf;
+
+/* Chadwm-style Accents (One Dark) */
+@define-color red      #e06c75;
+@define-color green    #98c379;
+@define-color yellow   #e5c07b;
+@define-color blue     #61afef;
+@define-color purple   #c678dd;
+@define-color cyan     #56b6c2;
+@define-color orange   #d19a66;
 
 /* Global Reset */
 * {
-    font-family: "Noto Sans", "FontAwesome", sans-serif;
-    font-size: 13px;
+    font-family: "JetBrains Mono", "Noto Sans", "FontAwesome", sans-serif;
+    font-size: 11px; 
+    font-weight: bold;
     border: none;
     border-radius: 0;
     min-height: 0;
 }
 
-/* Main Bar Styling */
+/* The Bar Itself - SOLID BACKGROUND */
 window#waybar {
-    background-color: @background;
-    color: @foreground;
+    background-color: @bg-dark; 
+    opacity: 1;                 
+    color: @fg;
     transition-property: background-color;
     transition-duration: .5s;
-    opacity: 0.95; /* Slight transparency for Dracula vibe */
 }
 
 /* Module Container Styling */
 box:not(.modules-left):not(.modules-right):not(.modules-center):not(#workspaces){
-    border-style: solid;
-    border-color: @current;
-    border-width: 0px; 
-    margin: 5px;
+    margin: 2px;
 }
 
+/* Right Modules Container */
 .modules-right {
-    margin-right: 10px;
+    background-color: @bg-dark;
+    margin: 2px 5px;
+    border-radius: 10px;
 }
 
-.module {
+.modules-left {
+    margin: 2px 5px;
+}
+
+/* --- Window Title Styling --- */
+#window {
+    color: @fg;
+    background-color: transparent;
     padding: 0 10px;
+    margin: 0 4px;
 }
 
 /* --- Workspaces (Niri) --- */
-#workspaces button {
-    color: @comment;
-    padding-left: 5px;
-    padding-right: 5px;
-    transition: color 0.3s ease;
+#workspaces {
+    background-color: @bg-light;
+    border-radius: 4px;
+    padding: 0px 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
-/* Active workspace gets Dracula Pink */
+#workspaces button {
+    color: @fg;
+    padding: 0 4px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
 #workspaces button.active {
-    color: @pink; 
+    color: @bg-dark;
+    background-color: @blue;
+    min-width: 16px;
 }
 
 #workspaces button:hover {
-    color: @foreground;
-    background: @current;
+    color: @fg;
+    background: @bg-light;
+}
+
+/* --- Right Section: Unified Background, Colorful Text --- */
+
+/* Base style for right modules */
+#clock,
+#pulseaudio,
+#network,
+#bluetooth,
+#battery {
+    padding: 2px 10px; 
+    margin: 2px 2px;
     border-radius: 4px;
+    /* Use the Inactive Workspace Background color */
+    background-color: @bg-light; 
 }
 
-#workspaces button.occupied:not(.focused) {
-    color: @purple;
-}
+/* Apply specific colors to the TEXT/ICON instead of background */
 
-/* --- Colorful Module Text Assignments --- */
-
-/* Clock: Purple */
 #clock {
     color: @purple;
+    margin-right: 4px;
 }
 
-/* Bluetooth: Blue (Comment color fits well here) or Cyan */
-#bluetooth {
-    color: @comment;
-}
-#bluetooth.connected {
-    color: @cyan;
-}
-
-/* Audio: Green */
 #pulseaudio {
-    color: @green;
+    color: @blue;
 }
 #pulseaudio.muted {
-    color: @red;
+    background-color: @bg-light; /* Keep uniform bg */
+    color: @red; /* Red text for muted */
 }
 
-/* Network: Cyan */
 #network {
-    color: @cyan;
+    color: @green;
 }
 #network.disconnected {
     color: @red;
 }
 
-/* Battery: Yellow -> Orange -> Red */
+#bluetooth {
+    color: @cyan;
+}
+#bluetooth.off {
+    color: @fg; /* Grey text when off */
+}
+
 #battery {
     color: @yellow;
 }
 
 #battery.warning:not(.charging) {
     color: @orange;
-    animation-name: blink;
-    animation-duration: 1s;
-    animation-timing-function: steps(25);
-    animation-iteration-count: 10;
-    animation-direction: alternate;
 }
 
 #battery.critical:not(.charging) {
     color: @red;
     animation-name: blink;
     animation-duration: 0.5s;
-    animation-timing-function: steps(25);
-    animation-iteration-count: 50;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
     animation-direction: alternate;
 }
 
-/* Tooltip Styling */
 tooltip {
-    background: @background;
-    border: 1px solid @pink;
+    background: @bg-dark;
+    border: 1px solid @blue;
+    border-radius: 4px;
 }
 
 tooltip label {
-    color: @foreground;
+    color: @fg;
 }
 
 @keyframes blink {
   to {
-    color: @current;
+    color: @bg-light; /* Blink text to background color */
   }
 }
