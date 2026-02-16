@@ -1,0 +1,74 @@
+{ pkgs, lib, ... }:
+{
+  programs.waybar = {
+    enable = true;
+    style = lib.mkAfter (builtins.readFile ../../dotfiles/waybar/style.css);
+    settings = [
+      {
+        name = "sidebar";
+        layer = "top";
+        position = "left";
+        modules-left = [ "clock" ];
+        modules-center = [ "niri/workspaces" ];
+        modules-right = [
+          "pulseaudio"
+          "custom/wifi"
+          "bluetooth"
+          "battery"
+        ];
+
+        "niri/workspaces" = {
+          disable-scroll = true;
+          all-outputs = true;
+          on-click = "activate";
+          format = "{icon}";
+          format-icons = {
+            active = "†";
+            default = "·";
+          };
+          sort-by-number = true;
+        };
+
+        clock = {
+          format = "{:%H\n%M}";
+          tooltip = true;
+          tooltip-format = "{:%d/%m}";
+        };
+
+        pulseaudio = {
+          format = "{icon}";
+          format-muted = "";
+          format-icons = {
+            default = ["" "" ""];
+          };
+          on-click = "pavucontrol";
+          tooltip = true;
+          tooltip-format = "Volume: {volume}%";
+        };
+
+        "custom/wifi" = {
+          exec = "../../dotfiles/waybar/scripts/wifi.sh";
+          interval = 3;
+          on-click = "alacritty -e nmtui";
+          return-type = "json";
+        };
+
+        bluetooth = {
+          format = "󰂲";
+          format-on = "{icon}";
+          format-off = "{icon}";
+          format-connected = "{icon}";
+          format-icons = {
+            on = "󰂯";
+            off = "󰂲";
+            connected = "󰂱";
+          };
+          on-click = "blueman-manager";
+          tooltip-format-connected = "{device_enumerate}";
+        };
+
+        battery = {};
+      }
+    ];
+  };
+}

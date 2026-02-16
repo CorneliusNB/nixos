@@ -1,0 +1,73 @@
+* {
+    /* Force a small font size to prevent "massive" bar */
+    font-size: 13px;
+    min-height: 0;
+    /* Remove borders by default */
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    /* Stylix will set the background color automatically */
+    color: inherit;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: inherit;
+    /* Ensure no borders on inactive buttons */
+    box-shadow: none;
+    text-shadow: none;
+    border: none;
+    border-radius: 0;
+}
+
+/* Niri active workspace styling */
+#workspaces button.active {
+    background-color: transparent;
+    /* This removes the "underline" (which is usually a bottom box-shadow) */
+    box-shadow: none;
+    border-bottom: none;
+    /* Optional: Keep it bold so you can still tell it's active */
+    font-weight: bold;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#mpd {
+    padding: 0 10px;
+    margin: 0 4px;
+    color: inherit;
+}
+
+#window {
+    margin: 0 4px;
+}
+
+/* Blinking animation for critical battery */
+#battery.critical {
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        color: #000000;
+        background-color: #ff0000;
+    }
+}

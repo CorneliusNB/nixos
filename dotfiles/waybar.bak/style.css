@@ -1,0 +1,48 @@
+* {
+    all: unset;
+    /* Removed global font-family so Stylix applies your system font */
+}
+
+tooltip {
+    /* Stylix controls the background and color now */
+    background-color: transparent; 
+    opacity: 0.8;
+}
+
+window#waybar > box {
+    /* Removed font-family: Courier */
+    margin: 12px 0px 12px 8px;
+    background-color: transparent; 
+    border-radius: 16px;
+}
+
+#workspaces button.active {
+    /* Removed font-family: Bodoni */
+    /* Kept font-size in case you want active workspaces larger */
+    font-size: 24px; 
+    color: white; /* You might want to keep this or let Stylix handle it */
+}
+
+#clock {
+    font-size: 12px;
+    padding: 15px 10px;
+    margin: 0px;
+    color: white;
+    background-color: transparent;
+}
+
+#workspaces {
+    padding: 15px 10px;
+    margin: 0px;
+    border-radius: 2px;
+    background-color: transparent;
+}
+
+#pulseaudio,
+#custom-wifi,
+#bluetooth,
+#battery {
+    padding: 10px 10px;
+    color: white;
+    background-color: transparent;
+}

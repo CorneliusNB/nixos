@@ -1,0 +1,33 @@
+{ pkgs, ... }: {
+  home.packages = with pkgs; [
+    alacritty
+    wl-clipboard
+    adwaita-icon-theme
+    dunst
+    libnotify
+    tree
+    kubectl
+    doublecmd
+    go
+    swaylock
+    nautilus
+    imagemagick
+    zsh-z
+    lazygit
+    gcc
+    pkg-config
+    bluetui
+    lsof
+    spotify
+    ripgrep
+    scrcpy
+    gh
+    wlsunset
+    vesktop
+    fastfetch
+    obs-studio
+    playerctl
+    openssl
+    spotify-player
+  ];
+}
