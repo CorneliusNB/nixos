@@ -9,7 +9,7 @@
     ./modules/system/zsh.nix
     ./modules/system/bootloader.nix
     ./modules/system/security.nix
-    ./modules/system/docker.nix
+    ./modules/system/distrobox.nix
     ./modules/system/services.nix
     ./modules/system/stylix.nix
     ./modules/system/browser.nix
