@@ -4,6 +4,7 @@
 
   # Configure packages
   services.flatpak.packages = [
+    "com.stremio.Stremio"
     "org.vinegarhq.Sober"
   ];
 
