@@ -6,7 +6,7 @@
   # ---------------------------------------------------------
   # This package becomes available because we import the module 
   # in flake.nix (see step 2 below).
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos-latest;
 
   # Option: Use the LTO-optimized version (check availability first)
   # boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
