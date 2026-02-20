@@ -6,6 +6,7 @@
   services.flatpak.packages = [
     "com.stremio.Stremio"
     "org.vinegarhq.Sober"
+    "us.zoom.Zoom"
   ];
 
   # Update packages at boot/activation (optional)

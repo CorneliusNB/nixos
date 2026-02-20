@@ -11,6 +11,7 @@
     ./modules/system/security.nix
     ./modules/system/distrobox.nix
     ./modules/system/services.nix
+    ./modules/system/flatpak.nix
     ./modules/system/stylix.nix
     ./modules/system/browser.nix
     ./modules/system/direnv.nix
