@@ -7,8 +7,8 @@
     ./modules/system/packages.nix
     ./modules/system/desktop.nix
     ./modules/system/zsh.nix
-    ./modules/system/bootloader.nix
     ./modules/system/kernel.nix
+    ./modules/system/bootloader.nix
     ./modules/system/security.nix
     ./modules/system/distrobox.nix
     ./modules/system/services.nix

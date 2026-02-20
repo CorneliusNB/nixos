@@ -2,12 +2,12 @@
   description = "Modular NixOS + Home Manager config";
 
   inputs = {
-    # System Packages
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 
-    # CachyOS Kernel (Do not add 'follows' here to keep binary cache working)
+    # CachyOS Kernel
     nix-cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel/release";
+      # inputs.nixpkgs.follows = "nixpkgs"; # KEEP DISABLED for cache hit
     };
 
     # Styling
@@ -31,10 +31,19 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
+        # 1. Apply the Overlay from your snippet
+        ({ config, pkgs, ... }: {
+          nixpkgs.overlays = [
+            inputs.nix-cachyos-kernel.overlays.pinned
+          ];
+        })
+
+        # 2. Your Configs
         ./configuration.nix
+        
+        # 3. Other Modules
         stylix.nixosModules.stylix
         nix-flatpak.nixosModules.nix-flatpak
-        
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

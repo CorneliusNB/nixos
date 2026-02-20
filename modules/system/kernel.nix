@@ -1,16 +1,18 @@
-{ pkgs, inputs, ... }:
+{ pkgs, lib, ... }:
 
 {
-  # Use the package directly from the flake input (Guaranteed to exist)
-  boot.kernelPackages = inputs.nix-cachyos-kernel.packages.${pkgs.system}.linuxPackages_cachyos;
+  # 1. Select the Kernel
+  # Using the path from your snippet:
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
 
-  # Enable the Binary Cache (MANDATORY)
+  # 2. Binary Cache (Crucial)
+  # Using the cache from your snippet:
   nix.settings = {
     substituters = [
-      "https://xddxdd.cachix.org"
+      "https://attic.xuyh0120.win/lantian"
     ];
     trusted-public-keys = [
-      "xddxdd.cachix.org-1:ay1HJyNDYmlSwj5NXQG065C8LfoqqKaTNCyzeixGjf8="
+      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
     ];
   };
 }
