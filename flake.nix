@@ -31,12 +31,6 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
-        ({ config, pkgs, ... }: {
-          nixpkgs.overlays = [
-            inputs.nix-cachyos-kernel.overlays.pinned
-          ];
-        })
-
         ./configuration.nix
         stylix.nixosModules.stylix
         nix-flatpak.nixosModules.nix-flatpak

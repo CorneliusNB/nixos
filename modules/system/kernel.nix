@@ -1,22 +1,10 @@
-{ pkgs, lib, ... }:
+{ pkgs, inputs, ... }:
 
 {
-  # ---------------------------------------------------------
-  # 1. Select the CachyOS Kernel
-  # ---------------------------------------------------------
-  # This package becomes available because we import the module 
-  # in flake.nix (see step 2 below).
-  boot.kernelPackages = pkgs.linuxPackages_cachyos-latest;
+  # Use the package directly from the flake input (Guaranteed to exist)
+  boot.kernelPackages = inputs.nix-cachyos-kernel.packages.${pkgs.system}.linuxPackages_cachyos;
 
-  # Option: Use the LTO-optimized version (check availability first)
-  # boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
-
-
-  # ---------------------------------------------------------
-  # 2. Binary Cache Configuration (CRITICAL)
-  # ---------------------------------------------------------
-  # Since you are on Stable, you MUST use this cache to avoid 
-  # compiling the kernel from source (which takes hours).
+  # Enable the Binary Cache (MANDATORY)
   nix.settings = {
     substituters = [
       "https://xddxdd.cachix.org"
